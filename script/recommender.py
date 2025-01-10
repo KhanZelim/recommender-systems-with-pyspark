@@ -59,4 +59,7 @@ class Recommender:
         final_recommendations = final_recommendations.filter("user_rating is NULL")
         final_recommendations = final_recommendations.select("userId", "movieId", "rating", "title", "genres")
 
-        return final_recommendations.show()
+        return final_recommendations
+    
+    def filter_user(self, df: DataFrame, user: int) -> DataFrame:
+        return df.filter(df.userId == user)

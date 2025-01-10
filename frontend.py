@@ -9,11 +9,11 @@ if st.button("Get recommendations"):
     recommender = Recommender()
 
     recommendations = recommender.get_recommendations()
-    recommendations = recommendations.filter(recommendations.userId == user)
+    recommendations = recommender.filter_user(recommendations, user)
 
     recommendations_list = recommendations.collect()
 
     for row in recommendations_list:
-        st.write(f"Movie ID: {row['movieId']}, Recommendation Score: {row['rating']}, Genre: {row['genres']}")
+        st.write(f"Title: {row['title']}, Genre: {row['genres']}")
 
     recommender.stop()
